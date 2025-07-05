@@ -5,7 +5,7 @@ export const booksRouter : Router = express.Router();
 const service = new BookService();
 
 // POST
-booksRouter.get('/', async (request : Request, response : Response, next : NextFunction) => {
+booksRouter.post('/', async (request : Request, response : Response, next : NextFunction) => {
     try {
         const body : any = request.body;
         const newBook = await service.create(body);
