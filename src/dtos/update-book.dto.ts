@@ -16,14 +16,14 @@ const currentYear = new Date().getFullYear();
 
 /**
  * DTO para la actualización de libros existentes
- * 
+ *
  * Define la estructura y validaciones para actualizar un libro existente.
- * Todos los campos son opcionales,  permitiendo actualizaciones parciales. 
+ * Todos los campos son opcionales,  permitiendo actualizaciones parciales.
  * Mantiene las mismas validaciones que CreateBookDto pero aplicadas
  * solo cuando los campos están presentes.
- * 
+ *
  * @class UpdateBookDto
- * 
+ *
  * @example
  * ```typescript
  * const updateData: UpdateBookDto = {
@@ -32,21 +32,21 @@ const currentYear = new Date().getFullYear();
  *   year: 1615
  * };
  * ```
-*/
+ */
 export class UpdateBookDto {
-/**
-    * ID único del libro a actualizar
-    * 
-    * Debe ser un número entero positivo que identifique de manera única
-    * el libro en el sistema. Es el único campo técnicamente requerido
-    * para realizar una actualización, aunque se marca como opcional
-    * para flexibilidad en diferentes contextos de uso.
-    * 
-    * @type {number}
-    * @memberof UpdateBookDto
-    * @example 1
-*/	
-    @IsOptional()
+	/**
+	 * ID único del libro a actualizar
+	 *
+	 * Debe ser un número entero positivo que identifique de manera única
+	 * el libro en el sistema. Es el único campo técnicamente requerido
+	 * para realizar una actualización, aunque se marca como opcional
+	 * para flexibilidad en diferentes contextos de uso.
+	 *
+	 * @type {number}
+	 * @memberof UpdateBookDto
+	 * @example 1
+	 */
+	@IsOptional()
 	@IsNumber(
 		{},
 		{
@@ -58,18 +58,18 @@ export class UpdateBookDto {
 	})
 	declare id: number;
 
-/**
-    * Título del libro (opcional para actualización)
-    * 
-    * Cuando se proporciona, se aplica la misma validación que en CreateBookDto:
-    * transformación trim() y validación de longitud entre 5 y 60 caracteres.
-    * 
-    * @type {string}
-    * @memberof UpdateBookDto
-    * @optional
-    * @example "El Ingenioso Hidalgo Don Quijote de la Mancha"
-*/	
-    @IsOptional()
+	/**
+	 * Título del libro (opcional para actualización)
+	 *
+	 * Cuando se proporciona, se aplica la misma validación que en CreateBookDto:
+	 * transformación trim() y validación de longitud entre 5 y 60 caracteres.
+	 *
+	 * @type {string}
+	 * @memberof UpdateBookDto
+	 * @optional
+	 * @example "El Ingenioso Hidalgo Don Quijote de la Mancha"
+	 */
+	@IsOptional()
 	@Transform(trim)
 	@Length(5, 60, {
 		message:
@@ -77,18 +77,18 @@ export class UpdateBookDto {
 	})
 	declare title: string;
 
-/**
-    * Nombre completo del autor (opcional para actualización)
-    * 
-    * Cuando se proporciona, se aplica la misma validación que en CreateBookDto:
-    * transformación trim() y validación de longitud entre 3 y 80 caracteres.
-    * 
-    * @type {string}
-    * @memberof UpdateBookDto
-    * @optional
-    * @example "Miguel de Cervantes Saavedra"
-*/	
-    @IsOptional()
+	/**
+	 * Nombre completo del autor (opcional para actualización)
+	 *
+	 * Cuando se proporciona, se aplica la misma validación que en CreateBookDto:
+	 * transformación trim() y validación de longitud entre 3 y 80 caracteres.
+	 *
+	 * @type {string}
+	 * @memberof UpdateBookDto
+	 * @optional
+	 * @example "Miguel de Cervantes Saavedra"
+	 */
+	@IsOptional()
 	@Transform(trim)
 	@Length(3, 80, {
 		message:
@@ -96,18 +96,18 @@ export class UpdateBookDto {
 	})
 	declare author: string;
 
-/**
-    * Año de publicación (opcional para actualización)
-    * 
-    * Cuando se proporciona, debe cumplir las mismas validaciones que en CreateBookDto:
-    * número entero positivo entre 1455 y el año actual.
-    * 
-    * @type {number}
-    * @memberof UpdateBookDto
-    * @optional
-    * @example 1615
-*/	
-    @IsOptional()
+	/**
+	 * Año de publicación (opcional para actualización)
+	 *
+	 * Cuando se proporciona, debe cumplir las mismas validaciones que en CreateBookDto:
+	 * número entero positivo entre 1455 y el año actual.
+	 *
+	 * @type {number}
+	 * @memberof UpdateBookDto
+	 * @optional
+	 * @example 1615
+	 */
+	@IsOptional()
 	@IsInt({
 		message: 'El año debe ser un número entero',
 	})
@@ -123,18 +123,18 @@ export class UpdateBookDto {
 	})
 	declare year: number;
 
-/**
-    * Género literario (opcional para actualización)
-    * 
-    * Cuando se proporciona, debe ser uno de los valores válidos del enum GeneroLibro.
-    * Se aplica la misma validación que en CreateBookDto.
-    * 
-    * @type {GeneroLibro}
-    * @memberof UpdateBookDto
-    * @optional
-    * @example GeneroLibro.NOVELA_HISTORICA
-*/	
-    @IsOptional()
+	/**
+	 * Género literario (opcional para actualización)
+	 *
+	 * Cuando se proporciona, debe ser uno de los valores válidos del enum GeneroLibro.
+	 * Se aplica la misma validación que en CreateBookDto.
+	 *
+	 * @type {GeneroLibro}
+	 * @memberof UpdateBookDto
+	 * @optional
+	 * @example GeneroLibro.NOVELA_HISTORICA
+	 */
+	@IsOptional()
 	@IsEnum(GeneroLibro, {
 		message: `El género del libro debe ser uno de: ${Object.values(GeneroLibro).join(', ')}`,
 	})
