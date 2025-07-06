@@ -2,21 +2,21 @@ import { Column, Entity, PrimaryColumnCannotBeNullableError, PrimaryGeneratedCol
 import { GeneroLibro } from "../models";
 
 @Entity()
-export class Book {
+export class Books {
     
     @PrimaryGeneratedColumn()
     declare id : number
 
     @Column()
-    declare titulo: string
+    declare title: string
 
     @Column()
-    declare autor : string
+    declare author : string
 
     @Column()
-    declare anio : number
+    declare year : number
 
     @Column()
-    declare genero : GeneroLibro
+    declare gender : GeneroLibro
 
 }

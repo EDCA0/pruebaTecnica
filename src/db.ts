@@ -1,7 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { Book } from "./entities/book"
-import { GeneroLibro } from "./models"
+import { Books } from "./entities/books"
 
 export const AppDataSource = new DataSource({
     type: 'postgres',
@@ -11,11 +10,11 @@ export const AppDataSource = new DataSource({
     schema: 'public',
     port: 5433,
     database: 'pruebatecnica',
-    synchronize: true,
+    synchronize: false,
     logging: true,
-    entities: [Book],
-    migrations: [],
+    entities: [Books],
+    migrations: [
+        'src/migrations/*.ts'
+    ],
     subscribers: [],
 })
-
- //Desactivar synchronize y loggin para prod - usar migraciones 

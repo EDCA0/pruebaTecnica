@@ -9,7 +9,10 @@
       "dev": "ts-node-dev --respawn src/index.ts",
       "start": "node dist/index.ts",
       "format": "prettier --write \"src/**/*.ts\" \"*.json\" \"*.md\"",
-      "typeorm": "typeorm-ts-node-commonjs"
+          "typeorm": "ts-node ./node_modules/typeorm/cli.js -d ./src/db.ts",
+         "migration:generate": "npm run typeorm -- migration:generate",
+         "migration:run": "npm run typeorm -- migration:run",
+         "migration:revert": "npm run typeorm -- migration:revert"
    },
    "repository": {
       "type": "git",
