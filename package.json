@@ -1,50 +1,47 @@
 {
-   "name": "pruebatecnica",
-   "version": "1.0.0",
-   "description": "Prueba Técnica Backend Junior – Node.js + Express",
-   "main": "index.js",
-   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "build": "tsc",
-      "dev": "ts-node-dev --respawn src/index.ts",
-      "start": "node dist/index.ts",
-      "format": "prettier --write \"src/**/*.ts\" \"*.json\" \"*.md\"",
-          "typeorm": "ts-node ./node_modules/typeorm/cli.js -d ./src/db.ts",
-         "migration:generate": "npm run typeorm -- migration:generate",
-         "migration:run": "npm run typeorm -- migration:run",
-         "migration:revert": "npm run typeorm -- migration:revert"
-   },
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/EDCA0/pruebaTecnica.git"
-   },
-   "keywords": [],
-   "author": "edca<eric.cavanzo@outlook.com>",
-   "license": "ISC",
-   "type": "commonjs",
-   "bugs": {
-      "url": "https://github.com/EDCA0/pruebaTecnica/issues"
-   },
-   "homepage": "https://github.com/EDCA0/pruebaTecnica#readme",
-   "devDependencies": {
-      "@types/node": "^24.0.10",
-      "ts-node": "^10.9.2",
-      "typescript": "^5.8.3",
-      "@types/cors": "^2.8.19",
-      "@types/express": "^5.0.3",
-      "@types/morgan": "^1.9.10",
-      "nodemon": "^3.1.10",
-      "prettier": "^3.6.2",
-      "ts-node-dev": "^2.0.0"
-   },
-   "dependencies": {
-      "class-transformer": "^0.5.1",
-      "class-validator": "^0.14.2",
-      "cors": "^2.8.5",
-      "express": "^5.1.0",
-      "morgan": "^1.10.0",
-      "pg": "^8.14.1",
-      "reflect-metadata": "^0.2.2",
-      "typeorm": "0.3.25"
-   }
+	"name": "pruebatecnica",
+	"version": "1.0.0",
+	"description": "Prueba Técnica Backend Junior – Node.js + Express",
+	"main": "index.js",
+	"scripts": {
+		"dev": "ts-node-dev --respawn src/index.ts",
+		"format": "prettier --write \"src/**/*.ts\" \"*.json\" \"*.md\"",
+		"typeorm": "ts-node ./node_modules/typeorm/cli.js -d ./src/db.ts",
+		"migration:generate": "npm run typeorm -- migration:generate",
+		"migration:run": "npm run typeorm -- migration:run",
+		"migration:revert": "npm run typeorm -- migration:revert"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/EDCA0/pruebaTecnica.git"
+	},
+	"keywords": [],
+	"author": "edca<eric.cavanzo@outlook.com>",
+	"license": "ISC",
+	"type": "commonjs",
+	"bugs": {
+		"url": "https://github.com/EDCA0/pruebaTecnica/issues"
+	},
+	"homepage": "https://github.com/EDCA0/pruebaTecnica#readme",
+	"devDependencies": {
+		"@types/node": "^24.0.10",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.8.3",
+		"@types/cors": "^2.8.19",
+		"@types/express": "^5.0.3",
+		"@types/morgan": "^1.9.10",
+		"nodemon": "^3.1.10",
+		"prettier": "^3.6.2",
+		"ts-node-dev": "^2.0.0"
+	},
+	"dependencies": {
+		"class-transformer": "^0.5.1",
+		"class-validator": "^0.14.2",
+		"cors": "^2.8.5",
+		"express": "^5.1.0",
+		"morgan": "^1.10.0",
+		"pg": "^8.14.1",
+		"reflect-metadata": "^0.2.2",
+		"typeorm": "0.3.25"
+	}
 }

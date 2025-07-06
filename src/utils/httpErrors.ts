@@ -6,28 +6,28 @@
 export class HttpError extends Error {
 	/** Código de estado HTTP del error (ej. 404, 400). */
 	statusCode: number;
-    /** Detalles del error, puede ser un mensaje único o un array de mensajes (para validaciones). */
-    details: string | string[]
+	/** Detalles del error, puede ser un mensaje único o un array de mensajes (para validaciones). */
+	details: string | string[];
 
-/**
-* @param {string | string[]} message - El mensaje o lista de mensajes de error.
-* @param {number} statusCode - El código de estado HTTP.
-*/
+	/**
+	 * @param {string | string[]} message - El mensaje o lista de mensajes de error.
+	 * @param {number} statusCode - El código de estado HTTP.
+	 */
 	constructor(message: string | string[], statusCode: number) {
-	    // La clase base 'Error' requiere un único string en su constructor.
-        let  errorMessage : string;
+		// La clase base 'Error' requiere un único string en su constructor.
+		let errorMessage: string;
 
-        if(Array.isArray(message)) {
-            errorMessage = message.join(', ')
-        } else {
-             errorMessage = message
-        }
+		if (Array.isArray(message)) {
+			errorMessage = message.join(', ');
+		} else {
+			errorMessage = message;
+		}
 
 		super(errorMessage);
 
 		this.statusCode = statusCode;
 		// Guardamos el mensaje/array original en nuestra propiedad personalizada.
-        this.details = message
+		this.details = message;
 	}
 }
 

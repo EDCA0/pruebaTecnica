@@ -26,7 +26,7 @@ export function logErrors(
  * @param {NextFunction} _next - El parámetro next es requerido por Express, pero no se usa aquí.
  */
 export function errorHandler(
-	error: Error,   
+	error: Error,
 	_request: Request,
 	response: Response,
 	_next: NextFunction,
@@ -34,13 +34,13 @@ export function errorHandler(
 	let statusCode: number;
 	let errorDetails: string | string[];
 
-    /* Verifica si el error es una instancia de la clase de error personalizada (HttpError) */
-	if (error instanceof HttpError) { 
-        /* Usará el código y el mensaje que traiga el error */
+	/* Verifica si el error es una instancia de la clase de error personalizada (HttpError) */
+	if (error instanceof HttpError) {
+		/* Usará el código y el mensaje que traiga el error */
 		statusCode = error.statusCode;
-		errorDetails = error.details;  
+		errorDetails = error.details;
 	} else {
-        /* Si no es una instancia de HttpError implica que es un error inesperado */
+		/* Si no es una instancia de HttpError implica que es un error inesperado */
 		statusCode = 500;
 		errorDetails = 'Ha ocurrido un error inesperado';
 	}
@@ -50,13 +50,12 @@ export function errorHandler(
 		statusCode: statusCode,
 		data: null,
 		error: errorDetails,
-	}
-    /* Evita exponer el stack en caso de que esté en producción por seguridad */
+	};
+	/* Evita exponer el stack en caso de que esté en producción por seguridad */
 	if (process.env.NODE_ENV === 'development') {
 		(finalResponse as any).stack = error.stack;
 	}
 
-    /* Envía la respuesta final al cliente con el código de estado y el mensaje de error */
-	response.status(statusCode).json(finalResponse); 
+	/* Envía la respuesta final al cliente con el código de estado y el mensaje de error */
+	response.status(statusCode).json(finalResponse);
 }
-
