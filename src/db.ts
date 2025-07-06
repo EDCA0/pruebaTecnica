@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
 	password: process.env.DB_PASSWORD || 'admin1234',
 	schema: 'public',
 	port: Number(process.env.DB_PORT) || 5433,
-	database: process.env.DB_NAME || 'prueba_tecnica',
+	database: process.env.DB_DATABASE|| 'pruebatecnica',
 	synchronize: false,
 	logging: process.env.DB_LOGGING === 'true',
 	entities: [Books],
