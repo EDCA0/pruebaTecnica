@@ -1,32 +1,24 @@
-import {IsUUID, IsNotEmpty, Length, IsInt, Min, Max, IsPositive, IsEnum} from 'class-validator'
+import {IsUUID, IsNotEmpty, Length, IsInt, Min, Max, IsPositive, IsEnum, IsNumber} from 'class-validator'
 import { trim } from './common.dto'
-import { UUID } from 'crypto'
 import { Transform } from 'class-transformer'
 import { GeneroLibro } from '../models';
 
 const currentYear = new Date().getFullYear();
 
 export class CreateBookDto {
-/* Validacion de id */
-    @IsNotEmpty({
-        message: 'El id no puede estar vacío',
-    })
-    @IsUUID('4')
-    declare id : UUID
-
 /* Validacion del título */
     @Transform(trim)
-    @Length(10, 60,{
+    @Length(5, 60,{
         message: 'El título del libro no puede ser más corto que $constraint1 ni más largo que $constraint2'
     })
-    declare titulo : string
+    declare title : string
 
 /* Validacion del autor */
     @Transform(trim)
     @Length(3, 80,{
         message: 'El nombre del autor no puede ser más corto que $constraint1 ni más largo que $constraint2'
     })
-    declare autor : string
+    declare author : string
 
 /* Validacion del año */
     @IsInt({
@@ -40,11 +32,11 @@ export class CreateBookDto {
     })
     @Max(currentYear, {message: 'El año de publicación no puede ser mayor al año actual $constraint1'
     })
-    declare anio : number
+    declare year : number
 
 /* Validacion del género */
     @IsEnum(GeneroLibro, {
         message: `El género del libro debe ser uno de: ${Object.values(GeneroLibro).join(', ')}`,
     })
-    declare genero : GeneroLibro 
+    declare gender : GeneroLibro 
 }

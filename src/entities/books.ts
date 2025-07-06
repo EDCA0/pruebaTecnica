@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryColumnCannotBeNullableError, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { GeneroLibro } from "../models";
 
 @Entity()
-export class Books {
+export class Books extends BaseEntity{
     
     @PrimaryGeneratedColumn()
     declare id : number
@@ -13,7 +13,7 @@ export class Books {
     @Column()
     declare author : string
 
-    @Column()
+    @Column("int")
     declare year : number
 
     @Column()

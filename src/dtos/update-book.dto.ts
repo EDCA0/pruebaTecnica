@@ -1,6 +1,5 @@
-import {IsUUID, IsNotEmpty, Length, IsInt, Min, Max, IsPositive, IsEnum, IsOptional} from 'class-validator'
+import {IsNumber, Length, IsInt, Min, Max, IsPositive, IsEnum, IsOptional} from 'class-validator'
 import { trim } from './common.dto'
-import { UUID } from 'crypto'
 import { Transform } from 'class-transformer'
 import { GeneroLibro } from '../models';
 
@@ -9,16 +8,18 @@ const currentYear = new Date().getFullYear();
 export class UpdateBookDto {
 /* Validacion de id */
     @IsOptional()
-    @IsNotEmpty({
-        message: 'El id no puede estar vacío',
+    @IsNumber({}, {
+        message : 'El id debe ser un numero'
     })
-    @IsUUID('4')
-    declare id : UUID
+    @IsPositive({
+        message: 'El ID debe ser un numero positivo'
+    })
+    declare id : number
 
 /* Validacion del título */
     @IsOptional()
     @Transform(trim)
-    @Length(10, 60,{
+    @Length(5, 60,{
         message: 'El título del libro no puede ser más corto que $constraint1 ni más largo que $constraint2'
     })
     declare titulo : string

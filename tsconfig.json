@@ -1,18 +1,3 @@
-// {
-//    "compilerOptions": {
-//       "lib": [
-//          "es2021"
-//       ],
-//       "target": "es2021",
-//       "module": "commonjs",
-//       "moduleResolution": "node",
-//       "outDir": "./build",
-//       "emitDecoratorMetadata": true,
-//       "experimentalDecorators": true,
-//       "sourceMap": true
-//    }
-// }
-
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */

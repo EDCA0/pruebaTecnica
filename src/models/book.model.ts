@@ -26,10 +26,10 @@ export enum GeneroLibro {
   POESIA = "Poesía"
 }
 export interface Book {
-    id : UUID
-    titulo: string
-    autor: string
-    anio : number
-    genero : GeneroLibro
+    id : number
+    title: string
+    author: string
+    year : number
+    gender : GeneroLibro
 } 
 

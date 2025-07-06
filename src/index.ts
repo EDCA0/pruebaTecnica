@@ -1,8 +1,7 @@
 import 'reflect-metadata';
 import { AppDataSource } from "./db"
 import {app, port} from './app';
-import { Books } from './entities/books';
-import { GeneroLibro } from './models';
+
 
 async function main() {
 try {
