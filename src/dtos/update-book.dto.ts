@@ -138,5 +138,5 @@ export class UpdateBookDto {
 	@IsEnum(GeneroLibro, {
 		message: `El género del libro debe ser uno de: ${Object.values(GeneroLibro).join(', ')}`,
 	})
-	declare gender: GeneroLibro;
+	declare genre: GeneroLibro;
 }

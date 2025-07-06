@@ -28,11 +28,11 @@ import { GeneroLibro } from '../models';
  * await book.save();
  * ```
  */
-@Entity()
+@Entity('books')
 @Index(['author', 'year']) // Índice compuesto para búsquedas por autor y año
 @Index(['genre']) // Índice para búsquedas por género
 @Check(`"year" >= 1455 AND "year" <= EXTRACT(YEAR FROM CURRENT_DATE)`)
-export class Book extends BaseEntity {
+export class Books extends BaseEntity {
 	/**
 	 * Identificador único del libro
 	 *

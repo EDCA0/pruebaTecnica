@@ -7,26 +7,35 @@ import { UpdateBookDto } from '../dtos/update-book.dto';
 export class BookService {
 	constructor() {}
 
-	// Crear libro
+	/**
+	 * Crea un nuevo libro en la base de datos.
+	 * @param {CreateBookDto} body - Los datos del libro a crear.
+	 * @returns {Promise<Book>} El libro recién creado.
+	 */
 	async create(body: CreateBookDto): Promise<Book> {
-		const book = new Books();
-		book.title = body.title;
-		book.author = body.author;
-		book.year = body.year;
-		book.genre = body.genre;
+		const newBook = new Books();
 
-		await book.save();
+		Object.assign(newBook, body);
 
-		return book;
+		await newBook.save();
+		return newBook;
 	}
 
-	// Obtener todos
+	/**
+	 * Obtiene una lista de todos los libros.
+	 * @returns {Promise<Book[]>} Un arreglo con todos los libros.
+	 */
 	async find(): Promise<Book[]> {
-		const book = await Books.find();
-		return book;
+		const books = await Books.find();
+		return books;
 	}
 
-	//  Obtener uno por id
+	/**
+	 * Busca un libro por su ID.
+	 * @param {number} id - El ID del libro a buscar.
+	 * @returns {Promise<Book>} El libro encontrado.
+	 * @throws {NotFoundError} Si el libro con el ID especificado no se encuentra.
+	 */
 	async findOne(id: number): Promise<Book> {
 		const book = await Books.findOne({
 			where: {
@@ -41,27 +50,45 @@ export class BookService {
 		return book;
 	}
 
-	// Actualizacion parcial
+	/**
+	 * Actualiza parcialmente un libro existente por su ID.
+	 * @param {number} id - El ID del libro a actualizar.
+	 * @param {UpdateBookDto} body - Los campos a actualizar.
+	 * @returns {Promise<Book>} El libro con los datos actualizados.
+	 * @throws {NotFoundError} Si el libro con el ID especificado no se encuentra.
+	 */
 	async updatePatch(id: number, body: UpdateBookDto): Promise<Book> {
 		await Books.update(id, {
 			title: body.title,
 			author: body.author,
 			year: body.year,
-			genre: body.gender,
+			genre: body.genre,
 		});
 
 		return this.findOne(id);
 	}
 
-	// Actualizacion total
+	/**
+	 * Reemplaza totalmente un libro existente por su ID.
+	 * @param {number} id - El ID del libro a reemplazar.
+	 * @param {CreateBookDto} body - Los nuevos datos completos del libro.
+	 * @returns {Promise<Book>} El libro con los datos actualizados.
+	 * @throws {NotFoundError} Si el libro con el ID especificado no se encuentra.
+	 */
 	async updatePut(id: number, body: CreateBookDto): Promise<Book> {
 		await Books.update(id, body);
 
 		return this.findOne(id);
 	}
 
-	// Eliminar uno por id
+	/**
+	 * Elimina un libro por su ID.
+	 * @param {number} id - El ID del libro a eliminar.
+	 * @returns {Promise<void>}
+	 * @throws {NotFoundError} Si el libro con el ID especificado no se encuentra.
+	 */
 	async delete(id: number): Promise<void> {
+		await this.findOne(id);
 		await Books.delete(id);
 	}
 }
