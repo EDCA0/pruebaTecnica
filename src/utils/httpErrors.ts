@@ -26,6 +26,7 @@ export class HttpError extends Error {
 		super(errorMessage);
 
 		this.statusCode = statusCode;
+		this.name = this.constructor.name; // Nombre de la clase como nombre del error
 		// Guardamos el mensaje/array original en nuestra propiedad personalizada.
 		this.details = message;
 	}
