@@ -3,6 +3,7 @@ import { BookService } from '../services/book.service';
 import { validationHandler } from '../middlewares/validator.handler';
 import { CreateBookDto } from '../dtos/create-book.dto';
 import { Book, ApiResponse } from '../models';
+import { UpdateBookDto } from '../dtos/update-book.dto';
 
 export const booksRouter: Router = express.Router();
 const service = new BookService();
@@ -73,6 +74,7 @@ booksRouter.get(
 // Actualizacion parcial
 booksRouter.patch(
 	'/:id',
+	validationHandler(UpdateBookDto),
 	async (request: Request, response: Response, next: NextFunction) => {
 		try {
 			const bookId = Number(request.params.id);
@@ -94,6 +96,7 @@ booksRouter.patch(
 // Actualizacion total
 booksRouter.put(
 	'/:id',
+	validationHandler(CreateBookDto),
 	async (request: Request, response: Response, next: NextFunction) => {
 		try {
 			const bookId = Number(request.params.id);

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { HttpError } from '../utils/httpErrors';
+import { ApiResponse } from '../models';
 
 /**
  * Middleware para registrar errores en la consola. Es el primer middleware de errores
@@ -51,7 +52,7 @@ export function errorHandler(
 		}
 	}
 
-	const finalResponse = {
+	const finalResponse: ApiResponse<null> = {
 		success: false,
 		statusCode: statusCode,
 		data: null,
