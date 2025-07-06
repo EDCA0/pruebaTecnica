@@ -1,11 +1,13 @@
 import { Book } from "../models";
 import { CreateBookDto } from "../dtos/create-book.dto";
 import { Books } from "../entities/books";
+import { NotFoundError } from "../utils/httpErrors";
+import { UpdateBookDto } from "../dtos/update-book.dto";
 
 export class BookService {    
     constructor () {};
 
-// Crear producto
+// Crear libro
    async create (body : CreateBookDto) : Promise<Book>{
         const book = new Books() 
         book.title = body.title
@@ -18,50 +20,48 @@ export class BookService {
         return book
     }
 
+// Obtener todos
     async find () : Promise<Book[]> {
         const book = await Books.find()
         return book;
     }
+
+//  Obtener uno por id
+    async findOne (id: number) : Promise<Book> {
+        const book = await Books.findOne({
+            where: {
+                id: id
+            }
+        })
+
+        if(!book) {
+            throw new NotFoundError('Libro no encontrado');
+        }
+
+        return book;
+    }
+
+// Actualizacion parcial
+    async updatePatch (id: number, body: UpdateBookDto) : Promise<Book> {
+        await Books.update(id, {
+            title: body.title,
+            author: body.author,
+            year: body.year,
+            gender: body.gender
+        })
+
+        return this.findOne(id);
+    }
+
+// Actualizacion total
+        async updatePut (id: number, body: CreateBookDto) : Promise<Book> {
+        await Books.update(id, body);
+
+        return this.findOne(id);
+    }
+
+// Eliminar uno por id
+    async delete (id: number) : Promise<void> {
+        await Books.delete(id);
+    }    
 }
-// //  Obtener todos
-//     async find () : Promise<Book[]>{
-//         return this.books;
-//     }
-
-// // Obtener uno 
-//     async findOne (id : string) : Promise<Book> {
-//         const book = this.books.find(item => item.id === id);
-
-//         if(!book) {
-//             throw new NotFoundError ('Libro no encontrado');
-//         }
-
-//         return book;
-//     }
-
-// //  Actualizacion parcial
-//     async updatePatch (id : string, body: UpdateBookDto) : Promise<Book> {
-//         const index = this.books.findIndex(item => item.id === id);
-
-//         if(!this.books[index]) {
-//             throw new NotFoundError ('Libro no encontrado');
-//         }
-
-//         this.books[index] = {
-//             ...this.books[index],
-//             ...body
-//         }
-
-//         return this.books[index]
-//     }
-// }
-// //     async updatePut (id : string, body: CreateBookDto) : Promise<Book> {
-// //         const book = this.books.find(item => item.id === id);
-
-// //         if(!book) {
-// //             throw new NotFoundError('Libro no encontrado');
-// //         }
-
-// //         this
-// //     }
-// // }
