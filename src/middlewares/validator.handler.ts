@@ -11,7 +11,7 @@ import { BadRequestError } from '../utils/httpErrors';
  */
 export function validationHandler<T extends object>(dtoClass: { new (): T }) {
 	return async (request: Request, _response: Response, next: NextFunction) => {
-		//Retornará la función middleware asíncronica que Express ejecutará.
+		//Retornará la función middleware asincrónica que Express ejecutará.
 		try {
 			const dtoInstance = plainToInstance(dtoClass, request.body); //> Transforma el objeto plano del request.body a una instancia de la clase DTO.
 			const errors = await validate(dtoInstance); //> Valida la instancia del DTO. Si hay errores, devuelve un array de objetos ValidationError.

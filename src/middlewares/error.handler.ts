@@ -42,7 +42,13 @@ export function errorHandler(
 	} else {
 		/* Si no es una instancia de HttpError implica que es un error inesperado */
 		statusCode = 500;
-		errorDetails = 'Ha ocurrido un error inesperado';
+		if (process.env.NODE_ENV === 'development') {
+			/* En desarrollo, muestra el mensaje de error completo */
+			errorDetails = error.message || 'Error inesperado del servidor';
+		} else {
+			/* En producción, no se debe exponer el mensaje de error completo */
+			errorDetails = 'Error inesperado del servidor';
+		}
 	}
 
 	const finalResponse = {
