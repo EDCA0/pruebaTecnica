@@ -1,4 +1,4 @@
-import { UUID } from "crypto"
+import { RandomUUIDOptions, type UUID } from "crypto"
 
 export enum GeneroLibro {
 /* --- Ficción --- */
@@ -32,3 +32,4 @@ export interface Book {
     anio : number
     genero : GeneroLibro
 } 
+

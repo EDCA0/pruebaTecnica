@@ -1,5 +1,7 @@
 import 'reflect-metadata';
 import express, {Request, Response} from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
 import {routerApi} from './routes';
 import { errorHandler, logErrors } from './middlewares/error.handler';
 
@@ -7,6 +9,9 @@ const app = express();
 const port : number = 3000;  //> 3000 por default para pruebas
 
 app.use(express.json());
+app.use(morgan('dev'));
+app.use(cors());
+
 
 routerApi(app);
 
@@ -25,3 +30,5 @@ app.use((request : Request, response : Response) => {
 app.listen(port, () => {
     console.log('Mi port ', port);
 })
+
+console.log('CHAO');
