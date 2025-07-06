@@ -1,6 +1,6 @@
 services:
   postgres:
-    restart: always
+    restart: always # Reinicio en caso de que el contenedor falle.
     image: postgres:13
     environment:
       - POSTGRES_DB=pruebatecnica
@@ -8,9 +8,8 @@ services:
       - POSTGRES_PASSWORD=admin1234
     ports:
       - 5433:5432
-    networks:
-      - my_network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
-networks:
-  my_network:
-    driver: bridge
+volumes:
+  postgres_data:

@@ -215,4 +215,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Volume Shadow Copy
+# This is a hidden directory that contains Volume Shadow Copy information.
+postgres_data/
+
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,linux,macos
