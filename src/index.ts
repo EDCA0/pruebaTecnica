@@ -1,34 +1,30 @@
 import 'reflect-metadata';
-import express, {Request, Response} from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import {routerApi} from './routes';
-import { errorHandler, logErrors } from './middlewares/error.handler';
+import { AppDataSource } from "./db"
+import {app, port} from './app';
+import { Book } from './entities/book';
+import { GeneroLibro } from './models';
 
-const app = express();
-const port : number = 3000;  //> 3000 por default para pruebas
+async function main() {
+try {
+        await AppDataSource.initialize()
+        const b = new Book()
+b.anio = 200,
+b.autor = '',
+b.genero = GeneroLibro.AUTOAYUDA,
+b.titulo = ''
+console.log(await AppDataSource.getRepository(Book).findOne({
+    where: {
+        id: 2
+    }
+}), )
+AppDataSource.getRepository(Book).save(b)
+     /* Escucha al puerto  */
+        app.listen(port, () => {
+        console.log('Mi port ', port);
+    })
+} catch (error ) {
+    console.error(error);
+}
+}
 
-app.use(express.json());
-app.use(morgan('dev'));
-app.use(cors());
-
-
-routerApi(app);
-
-/* Middleware para manejo de errores */
-app.use(logErrors)
-app.use(errorHandler)
-
-/* En caso de ir a un Endpoint No declarado */
-app.use((request : Request, response : Response) => {
-    response.status(404).json({
-        message : 'Endpoint not found',
-    });
-});
-
-/* Escucha al puerto  */
-app.listen(port, () => {
-    console.log('Mi port ', port);
-})
-
-console.log('CHAO');
+main()

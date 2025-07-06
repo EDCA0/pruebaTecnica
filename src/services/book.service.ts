@@ -54,14 +54,14 @@ export class BookService {
 
         return this.books[index]
     }
-
-    async updatePut (id : string, body: CreateBookDto) : Promise<Book> {
-        const book = this.books.find(item => item.id === id);
-
-        if(!book) {
-            throw new NotFoundError('Libro no encontrado');
-        }
-
-        this
-    }
 }
+//     async updatePut (id : string, body: CreateBookDto) : Promise<Book> {
+//         const book = this.books.find(item => item.id === id);
+
+//         if(!book) {
+//             throw new NotFoundError('Libro no encontrado');
+//         }
+
+//         this
+//     }
+// }

@@ -1,0 +1,27 @@
+services:
+  postgres:
+    restart: always
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=pruebatecnica
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin1234
+    ports:
+      - 5433:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=eric.cavanzo@outlook.com
+  #     - PGADMIN_DEFAULT_PASSWORD=root
+  #   ports:
+  #     - 5050:80
+  #   networks:
+  #     - my_network
+
+networks:
+  my_network:
+    driver: bridge
