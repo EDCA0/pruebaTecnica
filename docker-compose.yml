@@ -7,7 +7,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin1234
     ports:
-      - 5433:5432
+      - 5433:5432 # El primer puerto es el host(al que te conectas) y el segundo es donde corre postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
