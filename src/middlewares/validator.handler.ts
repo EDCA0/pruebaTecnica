@@ -14,7 +14,9 @@ export function validationHandler<T extends object>(dtoClass: { new (): T }) {
 		//Retornará la función middleware asincrónica que Express ejecutará.
 		try {
 			const dtoInstance = plainToInstance(dtoClass, request.body); //> Transforma el objeto plano del request.body a una instancia de la clase DTO.
-			const errors = await validate(dtoInstance); //> Valida la instancia del DTO. Si hay errores, devuelve un array de objetos ValidationError.
+			const errors = await validate(dtoInstance, {
+				whitelist: true,
+			}); //> Valida la instancia del DTO. Si hay errores, devuelve un array de objetos ValidationError.
 
 			if (errors.length > 0) {
 				const messages = errors.flatMap(
@@ -24,6 +26,7 @@ export function validationHandler<T extends object>(dtoClass: { new (): T }) {
 				);
 				throw new BadRequestError(messages); //> Lanza un error personalizado que contiene los mensajes, para que lo capture el errorHandler.
 			}
+			request.body = dtoInstance;
 			next(); //> Si no hay errores, la solicitud continúa al siguiente middleware (el controlador).
 		} catch (error) {
 			/* *
